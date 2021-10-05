@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Note from './components/Note';
+import noteService from './services/notes';
 
 const App = () => {
   const [notes, setNotes] = useState([]);
@@ -8,29 +8,35 @@ const App = () => {
   const [showAll, setShowAll] = useState(true);
 
   useEffect(() => {
-    console.log('effect');
-    axios.get('http://localhost:3001/notes').then(response => {
-      console.log('response fulfilled');
-      setNotes(response.data);
+    // console.log('effect');
+    noteService.getAll().then(initialNotes => {
+      // console.log('response fulfilled');
+      setNotes(initialNotes);
     });
   }, []);
-  console.log('render', notes.length, 'notes');
 
-  const addNote = event => {
+  const addNote = async event => {
     event.preventDefault();
     const noteObject = {
       content: newNote,
       date: new Date().toISOString(),
       important: Math.random() < 0.5,
-      id: notes.length + 1,
     };
-    setNotes(notes.concat(noteObject));
-    // setNotes([...notes, noteObject]);
+    let returnedNote = await noteService.create(noteObject);
+    setNotes(notes.concat(returnedNote));
     setNewNote('');
   };
 
-  const handleChange = e => {
-    setNewNote(e.target.value);
+  const handleChange = ({ target }) => setNewNote(target.value);
+
+  const toggleImportanceOf = async id => {
+    const note = notes.find(n => n.id === id);
+    const changedNote = { ...note, important: !note.important };
+
+    let returnedNote = await noteService.update(id, changedNote);
+    setNotes(
+      notes.map(note => (note.id !== id ? note : returnedNote)),
+    );
   };
 
   const notesToShow = showAll
@@ -42,7 +48,11 @@ const App = () => {
       <h1>Notes</h1>
       <ul>
         {notesToShow.map(note => (
-          <Note key={note.id} note={note} />
+          <Note
+            key={note.id}
+            note={note}
+            toggleImportanceOf={toggleImportanceOf}
+          />
         ))}
       </ul>
       <button onClick={() => setShowAll(!showAll)}>
