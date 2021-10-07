@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 
+app.use(express.json())
+
 // const app = http.createServer((req, res) => {
 //   res.writeHead(200, { 'Content-Type': 'text/plain' })
 //   res.end('Hello from server')
@@ -32,16 +34,19 @@ let notes = [
 //   response.end(JSON.stringify(notes))
 // })
 
+// The Root Route
 app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
 
+// The Index Route
 app.get('/api/notes', (request, response) => {
   response.json(notes)
 })
 
+// The Show Route
 app.get('/api/notes/:id', (request, response) => {
-  let id = Number(request.params.id)
+  const id = Number(request.params.id)
   const note = notes.find(note => note.id === id)
   //note variable set to 'undefined if no matching note found
   if (note) {
@@ -53,6 +58,39 @@ app.get('/api/notes/:id', (request, response) => {
       .status(404)
       .json({ error: 'Requested note resource does not exist' })
   }
+})
+const generateId = () => {
+  const maxId = notes.length > 0 ? Math.max(...notes.map(n => n.id)) : 0
+  return maxId + 1
+}
+
+// The Post Route
+app.post('/api/notes', (request, response) => {
+  const { body } = request
+
+  if (!body.content) {
+    return response.status(400).json({
+      error: 'content missing',
+    })
+  }
+
+  const note = {
+    id: generateId(),
+    content: body.content,
+    date: new Date().toISOString(),
+    important: body.important || false,
+  }
+
+  notes = notes.concat(note)
+  response.json(note)
+})
+
+// The Destroy Route
+app.delete('/api/notes/:id', (request, response) => {
+  const id = Number(request.params.id)
+  notes = notes.filter(note => note.id !== id)
+
+  response.status(204).end()
 })
 
 const PORT = 3001
