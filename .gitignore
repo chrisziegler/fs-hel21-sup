@@ -1,8 +1,4 @@
 node_modules/
-
-
-#production
-
-build/
-.vscode/
 .env
+part3/
+part2/notes/build
