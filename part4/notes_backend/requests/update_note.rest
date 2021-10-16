@@ -1,0 +1,7 @@
+PUT http://localhost:3001/api/notes/61626a5312489d0937c872c0
+Content-Type: application/json
+
+{
+  "content": "JavaScript, HTML & CSS are the foundations",
+  "important": false
+}

@@ -1,0 +1,29 @@
+{
+  "name": "notes",
+  "version": "0.0.2",
+  "description": "separate repo for heroku",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build:ui": "rm -rf build && cd ../../part2/notes && npm run build --prod && cp -r build ../../part4/notes-backend",
+    "deploy:full": "npm run build:ui && git commit -m uibuild && git push && npm run deploy",
+    "logs:prod": "heroku logs --tail"
+  },
+  "keywords": [],
+  "author": "Chris Ziegler",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.10",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "nodemon": "^2.0.13"
+  }
+}
