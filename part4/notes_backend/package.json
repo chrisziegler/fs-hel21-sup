@@ -4,13 +4,13 @@
   "description": "separate repo for heroku",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
     "build:ui": "rm -rf build && cd ../../part2/notes && npm run build --prod && cp -r build ../../part4/notes-backend",
     "deploy:full": "npm run build:ui && git commit -m uibuild && git push && npm run deploy",
-    "logs:prod": "heroku logs --tail"
+    "logs:prod": "heroku logs --tail",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand"
   },
   "keywords": [],
   "author": "Chris Ziegler",
@@ -23,7 +23,13 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^8.0.0",
-    "nodemon": "^2.0.13"
+    "jest": "^27.2.5",
+    "nodemon": "^2.0.13",
+    "supertest": "^6.1.6"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
