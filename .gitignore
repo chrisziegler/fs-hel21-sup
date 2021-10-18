@@ -2,3 +2,5 @@ node_modules/
 .env
 part3/
 part2/notes/build
+practice.js
+notes-promises.js
