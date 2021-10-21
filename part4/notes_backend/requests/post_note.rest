@@ -1,7 +1,8 @@
 POST http://localhost:3001/api/notes
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImN6aWVnbGVyIiwiaWQiOiI2MTcwZmYxOWJiNmM3MTY3NmE1MzgzYTMiLCJpYXQiOjE2MzQ3OTgxODZ9.jBv1IbCuYPAKXMPwSaC4v3i6Qt_pai_lZiUlQyX44bc
 
 {
-  "content": "Test removing the noteSchema.set('toJSON') method",
+  "content": "This note gets it user.id from the id included in the authorization token",
   "important": true
 }
