@@ -1,0 +1,10 @@
+POST http://localhost:3001/api/notes/ HTTP/1.1
+content-type: application/json
+
+{
+    "content": "You can make multiple requests in the same file using the # seperators",
+    "important": false
+}
+
+###
+GET http://localhost:3001/api/notes/
