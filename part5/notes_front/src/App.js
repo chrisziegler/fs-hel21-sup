@@ -38,11 +38,18 @@ const App = () => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    // console.log('effect');
     noteService.getAll().then(initialNotes => {
-      // console.log('response fulfilled');
       setNotes(initialNotes)
     })
+  }, [])
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      noteService.setToken(user.token)
+    }
   }, [])
 
   const addNote = async event => {
@@ -63,6 +70,11 @@ const App = () => {
         username,
         password,
       })
+      window.localStorage.setItem(
+        'loggedNoteappUser',
+        JSON.stringify(user),
+      )
+      noteService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
@@ -102,7 +114,7 @@ const App = () => {
 
   const loginForm = () => (
     <form onSubmit={handleLogin}>
-      <div>
+      <div className="form">
         username
         <input
           type="text"
@@ -111,7 +123,7 @@ const App = () => {
           onChange={({ target }) => setUsername(target.value)}
         />
       </div>
-      <div>
+      <div className="form">
         password
         <input
           type="password"
@@ -120,7 +132,9 @@ const App = () => {
           onChange={({ target }) => setPassword(target.value)}
         />
       </div>
-      <button type="submit">login</button>
+      <button type="submit" className="login">
+        login
+      </button>
     </form>
   )
 
@@ -153,7 +167,7 @@ const App = () => {
         loginForm()
       ) : (
         <div>
-          <p>{user.name} is logged-in</p>
+          <p className="smtext">{user.name} is logged-in</p>
           {noteForm()}
         </div>
       )}

@@ -1,20 +1,47 @@
 body {
   margin: 1rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1.25rem;
+  color: rgb(59, 53, 53);
+}
+h1 {
+  font-size: 1.5rem;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas,
-    'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.form {
+  max-width: 16rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
 }
 
 button {
   margin-left: 1em;
   margin-bottom: 0.4em;
+}
+
+button.login {
+  margin: 0;
+}
+
+input {
+  margin-left: 0.5em;
 }
 
 .error {
@@ -25,4 +52,8 @@ button {
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
+}
+
+.smtext {
+  font-size: 0.75rem;
 }
