@@ -5,6 +5,7 @@ body {
     'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgb(248, 248, 222);
 }
 
 h1 h2,
@@ -31,14 +32,37 @@ code {
   margin-bottom: 0.5em;
 }
 
-button {
+/* button {
   margin-left: 1em;
   margin-bottom: 0.4em;
+} */
+
+button {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 0.25rem;
+  background: white;
+  color: black;
+  font-family: system-ui, sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-decoration: none;
+  padding-bottom: 0.3em;
+  margin-top: 0.5em;
+  margin-left: 0.4em;
+  cursor: pointer;
 }
 
-button.login {
+button:hover {
+  background: rgb(252, 252, 252);
+}
+
+/* button.login {
   margin: 0;
 }
+button.cancel {
+  margin: 0;
+} */
 
 input {
   margin-left: 0.5em;
