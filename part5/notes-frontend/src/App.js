@@ -107,6 +107,11 @@ const App = () => {
     </Togglable>
   )
 
+  const logout = () => {
+    window.localStorage.removeItem('loggedBloglistAppUser')
+    setUser(null)
+  }
+
   return (
     <div>
       <h1>Notes</h1>
@@ -116,7 +121,12 @@ const App = () => {
         loginForm()
       ) : (
         <div>
-          <p className="smtext">{user.name} logged in</p>
+          <p className="smtext">
+            {user.name} logged in{' '}
+            <button className="logout" onClick={logout}>
+              logout
+            </button>
+          </p>
           {noteForm()}
         </div>
       )}

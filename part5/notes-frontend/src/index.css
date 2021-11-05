@@ -81,3 +81,20 @@ input {
 .smtext {
   font-size: 0.75rem;
 }
+
+.logout {
+  position: relative;
+  bottom: 0.15em;
+  margin-left: 0.6em;
+  cursor: pointer;
+  font-size: 0.65rem;
+  font-family: system-ui, sans-serif;
+  padding-top: 0;
+  line-height: 1;
+  color: white;
+  background: rgb(107, 107, 107);
+}
+
+.logout:hover {
+  background: rgb(139, 139, 139);
+}
