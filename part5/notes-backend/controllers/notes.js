@@ -4,12 +4,16 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 
 notesRouter.get('/', async (request, response) => {
-  const notes = await Note.find({}).populate('user', {
-    username: 1,
-    name: 1,
-  })
+  try {
+    const notes = await Note.find({}).populate('user', {
+      username: 1,
+      name: 1,
+    })
 
-  response.json(notes)
+    response.json(notes)
+  } catch (exception) {
+    console.log(exception)
+  }
 })
 
 notesRouter.get('/:id', async (request, response, next) => {
