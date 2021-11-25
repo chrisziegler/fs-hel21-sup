@@ -14,6 +14,11 @@
       "content": "We're now persisting notes in json server",
       "important": false,
       "id": 3
+    },
+    {
+      "content": "This is a new note, works?",
+      "important": false,
+      "id": 4
     }
   ]
 }
