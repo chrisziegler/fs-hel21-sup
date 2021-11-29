@@ -1,15 +1,18 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { createNote } from '../reducers/noteReducer'
 
 const NewNote = props => {
-  const dispatch = useDispatch()
-
+  // note the difference, and that we don't call createNote directly
+  // but rather use it in the shorthand version of mapDispatchToProps
+  // this component did not need mapStateToProps
+  // console.log(createNote)
+  // console.log(props.createNote)
   const addNote = async event => {
     event.preventDefault()
     const content = event.target.note.value
     event.target.note.value = ''
-    dispatch(createNote(content))
+    props.createNote(content)
   }
 
   return (
@@ -20,4 +23,4 @@ const NewNote = props => {
   )
 }
 
-export default NewNote
+export default connect(null, { createNote })(NewNote)
