@@ -1,69 +1,11 @@
 import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-} from 'react-router-dom'
+import App from './App'
 
-const Home = () => (
-  <div>
-    {' '}
-    <h2>TKTL notes app</h2>{' '}
-  </div>
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root'),
 )
-
-const Notes = () => (
-  <div>
-    {' '}
-    <h2>Notes</h2>{' '}
-  </div>
-)
-
-const Users = () => (
-  <div>
-    {' '}
-    <h2>Users</h2>{' '}
-  </div>
-)
-
-const App = () => {
-  const padding = {
-    padding: 5,
-  }
-
-  return (
-    <Router>
-      <div>
-        <Link style={padding} to="/">
-          home
-        </Link>
-        <Link style={padding} to="/notes">
-          notes
-        </Link>
-        <Link style={padding} to="/users">
-          users
-        </Link>
-      </div>
-
-      <Routes>
-        <Route path="/notes">
-          <Notes />
-        </Route>
-        <Route path="/users">
-          <Users />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Routes>
-
-      <div>
-        <i>Note app, Department of Computer Science 2021</i>
-      </div>
-    </Router>
-  )
-}
-
-ReactDOM.render(<App />, document.getElementById('root'))
