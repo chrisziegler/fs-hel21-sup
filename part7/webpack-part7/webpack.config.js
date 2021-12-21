@@ -5,20 +5,29 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
   resolve: {
-    extensions: ['*', '.js'],
+    extensions: ['*', '.js', '.jsx'],
   },
   output: {
-    path: path.resolve(__dirname, './build'),
+    path: path.resolve(__dirname, 'build'),
     filename: 'main.js',
   },
   devServer: {
-    contentBase: path.resolve(__dirname, './public'),
+    static: {
+      directory: path.resolve(__dirname, './build'),
+    },
+    compress: true,
+    hot: true,
+    port: 3000,
   },
 }
