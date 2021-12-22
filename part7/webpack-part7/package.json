@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "description": "practicing webpack",
   "scripts": {
-    "build": "webpack --mode=development",
-    "start": "webpack serve --config ./webpack.config.js --mode development"
+    "build": "webpack --mode=production",
+    "start": "webpack serve --config ./webpack.config.js --mode=development",
+    "server": "json-server -p3001 --watch db.json"
   },
   "license": "MIT",
   "devDependencies": {
@@ -20,6 +21,9 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "axios": "^0.24.0",
+    "json-server": "^0.17.0",
+    "promise-polyfill": "^8.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
